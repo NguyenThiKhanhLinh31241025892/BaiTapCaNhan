@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio bài tập cá nhân môn Phát triển ứng dụng Thương mại điện tử - Nguyễn Thị Khánh Linh.">
+  <title>Bài tập cá nhân | Nguyễn Thị Khánh Linh</title>
+  <style>
+    :root { --blue:#2459ce; --dark:#15243e; --muted:#62718a; --line:#e0e7f2; --bg:#f5f7fc; --white:#fff; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin:0; background:var(--bg); color:var(--dark); font-family: 'Segoe UI',Arial,sans-serif; line-height:1.65; }
+    a { color:inherit; }
+    .container { max-width:1120px; padding:0 22px; margin:0 auto; }
+    .nav { background:#fff; border-bottom:1px solid var(--line); }
+    .nav-inner { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; min-height:70px; gap:14px; }
+    .brand { color:var(--dark); font-weight:850; text-decoration:none; letter-spacing:.04em; }
+    .brand span { color:var(--blue); }
+    .nav-links { display:flex; gap:20px; flex-wrap:wrap; font-size:14px; font-weight:650; }
+    .nav-links a { text-decoration:none; }
+    .nav-links a:hover { color:var(--blue); }
+    .hero { padding:66px 0 52px; }
+    .hero-grid { display:grid; grid-template-columns:minmax(0,1fr) 220px; align-items:center; gap:40px; }
+    .eyebrow { display:inline-block; margin:0 0 14px; color:var(--blue); font-size:12px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { margin:0 0 15px; font-size:clamp(36px,5vw,60px); line-height:1.17; letter-spacing:-.045em; }
+    h1 span { color:var(--blue); }
+    .intro { max-width:710px; margin:0 0 22px; font-size:16px; color:var(--muted); }
+    .meta { display:flex; flex-wrap:wrap; gap:9px; }
+    .meta span { display:inline-flex; border:1px solid #d4e1fa; background:#eaf1ff; color:#264d95; padding:5px 12px; border-radius:999px; font-size:12px; font-weight:650; }
+    .avatar { width:220px; height:220px; padding:7px; background:white; border-radius:24px; box-shadow:0 18px 48px rgba(36,73,136,.13); transform:rotate(2deg); }
+    .avatar img { width:100%; height:100%; object-fit:cover; object-position:center 23%; border-radius:18px; }
+    .section { padding:14px 0 52px; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:20px; }
+    h2 { font-size:27px; margin:0 0 5px; letter-spacing:-.02em; }
+    .hint { margin:0; color:var(--muted); font-size:14px; }
+    .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .card { display:flex; flex-direction:column; background:var(--white); padding:27px; border:1px solid var(--line); border-radius:20px; box-shadow:0 10px 32px rgba(34,60,117,.045); }
+    .tag { width:max-content; display:inline-block; padding:4px 10px; border-radius:7px; color:var(--blue); background:#eaf1ff; font-size:12px; font-weight:800; }
+    .card h3 { font-size:24px; margin:15px 0 7px; line-height:1.28; }
+    .card p { margin:0 0 23px; color:var(--muted); }
+    .button { width:fit-content; display:inline-flex; align-items:center; gap:12px; margin-top:auto; padding:11px 16px; background:var(--blue); color:white; border-radius:10px; font-weight:750; text-decoration:none; transition:background .15s,transform .15s; }
+    .button:hover { background:#173f9a; transform:translateY(-1px); }
+    .list { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    .item { background:white; border:1px solid var(--line); border-radius:13px; padding:15px 16px; text-decoration:none; transition:transform .15s,border-color .15s; min-height:92px; }
+    .item:hover { transform:translateY(-2px); border-color:#8eabef; }
+    .item strong { display:block; font-size:15px; color:var(--dark); }
+    .item small { display:block; font-size:12px; color:var(--muted); margin-top:4px; line-height:1.5; }
+    .blue-panel { padding:31px; border-radius:22px; background:linear-gradient(120deg,#193b85,#2860df); color:white; }
+    .blue-panel h2 { color:white; }
+    .blue-panel p { color:#e2eaff; margin:0 0 18px; max-width:750px; }
+    .labs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .lab-link { display:block; background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.28); border-radius:12px; padding:15px; text-decoration:none; }
+    .lab-link:hover { background:rgba(255,255,255,.2); }
+    .lab-link strong { display:block; }
+    .lab-link small { color:#e2eaff; }
+    footer { margin-top:12px; padding:26px 0; border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+    .footer-inner { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+    @media (max-width:800px) { .hero-grid { grid-template-columns:1fr; } .avatar { width:165px; height:165px; order:-1; transform:none; } .list { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (max-width:620px) { .nav-inner { padding:12px 0; } .hero { padding:34px 0; } .cards,.labs { grid-template-columns:1fr; } .list { grid-template-columns:1fr 1fr; } .blue-panel { padding:23px; } }
+    @media (max-width:420px) { .list { grid-template-columns:1fr; } .meta span { font-size:11px; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="./">KHÁNH LINH <span>/ PORTFOLIO</span></a>
+      <nav class="nav-links" aria-label="Điều hướng">
+        <a href="#css">HTML & CSS</a>
+        <a href="#javascript">JavaScript</a>
+        <a href="https://github.com/NguyenThiKhanhLinh31241025892/BaiTapCaNhan" target="_blank" rel="noopener noreferrer">Xem GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Học phần Phát triển ứng dụng thương mại điện tử</p>
+          <h1>Hành trình học <span>thiết kế Web</span></h1>
+          <p class="intro">Xin chào! Mình là Nguyễn Thị Khánh Linh. Đây là website tổng hợp các bài tập cá nhân đã thực hiện. Bạn có thể mở từng bài để xem giao diện và kiểm tra trực tiếp các chức năng trên trình duyệt.</p>
+          <div class="meta">
+            <span>MSSV: 31241025892</span>
+            <span>Lớp: 26C1INF50902701</span>
+            <span>HTML · CSS · JavaScript · jQuery</span>
+          </div>
+        </div>
+        <div class="avatar">
+          <img src="VeNha/assets/anh-ca-nhan.jpg" alt="Ảnh đại diện Nguyễn Thị Khánh Linh">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="css">
+      <div class="container">
+        <div class="section-head">
+          <div><h2>Bài tập HTML & CSS</h2><p class="hint">Thực hành xây dựng giao diện, bố cục và trình bày nội dung trang web.</p></div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <span class="tag">TUẦN 03</span>
+            <h3>Portfolio bài tập CSS</h3>
+            <p>Trang tổng hợp bài tập tuần 3, bao gồm các bài thực hành bố cục, tạo kiểu văn bản, hình ảnh và biểu tượng.</p>
+            <a class="button" href="VeNha/">Mở website bài tập CSS <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="card">
+            <span class="tag">BÀI TẬP CÁ NHÂN</span>
+            <h3>Danh sách bài thực hành</h3>
+            <p>Chọn trực tiếp từng bài bên dưới để xem trang HTML như một website, thay vì chỉ đọc mã nguồn trên GitHub.</p>
+            <a class="button" href="#css-exercises">Xem từng bài <span aria-hidden="true">↓</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="css-exercises">
+      <div class="container">
+        <div class="section-head"><div><h2>Truy cập từng bài CSS</h2><p class="hint">Các đường dẫn đã đối chiếu với file hiện có trong repository.</p></div></div>
+        <div class="list">
+          <a class="item" href="VeNha/BaiTap1.html"><strong>Bài tập 1 ↗</strong><small>Minh chứng game CSS</small></a>
+          <a class="item" href="VeNha/BaiTap2.html"><strong>Bài tập 2 ↗</strong><small>Tạo các đoạn văn</small></a>
+          <a class="item" href="VeNha/BaiTap4.html"><strong>Bài tập 4 ↗</strong><small>Thực hành CSS</small></a>
+          <a class="item" href="VeNha/BaiTap5.html"><strong>Bài tập 5 ↗</strong><small>Giao diện Khoa CNTTKD</small></a>
+          <a class="item" href="VeNha/BaiTap6.html"><strong>Bài tập 6 ↗</strong><small>Giao diện Học web chuẩn</small></a>
+          <a class="item" href="VeNha/BaiTap7.html"><strong>Bài tập 7 ↗</strong><small>Website Layout</small></a>
+          <a class="item" href="VeNha/BaiTap8.html"><strong>Bài tập 8 ↗</strong><small>Thực hành CSS</small></a>
+          <a class="item" href="VeNha/BaiTap9.html"><strong>Bài tập 9 ↗</strong><small>Font Awesome Icons</small></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="javascript">
+      <div class="container">
+        <div class="blue-panel">
+          <h2>Bài tập JavaScript Labs</h2>
+          <p>Bộ bài thực hành JavaScript 1, JavaScript 2 và JavaScript 3, tập trung vào cú pháp cơ bản, DOM, xử lý sự kiện và thư viện jQuery.</p>
+          <div class="labs">
+            <a class="lab-link" href="JavaScript-Labs/Lab08/"><strong>Lab 08 ↗</strong><small>Language Foundations</small></a>
+            <a class="lab-link" href="JavaScript-Labs/Lab09/"><strong>Lab 09 ↗</strong><small>DOM and Events</small></a>
+            <a class="lab-link" href="JavaScript-Labs/Lab10/"><strong>Lab 10 ↗</strong><small>jQuery</small></a>
+          </div>
+          <p style="margin:18px 0 0"><a style="color:white;font-weight:750" href="JavaScript-Labs/">Xem trang tổng hợp JavaScript Labs →</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 Nguyễn Thị Khánh Linh · Bài tập cá nhân</span>
+      <span>Phát triển ứng dụng thương mại điện tử</span>
+    </div>
+  </footer>
+</body>
+</html>
