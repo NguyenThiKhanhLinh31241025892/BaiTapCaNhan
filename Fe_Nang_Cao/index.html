@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Portfolio cá nhân: bài tập CSS tuần 3 và FE nâng cao (Responsive Web Design, Chrome DevTools) - môn Phát triển ứng dụng Web/TMĐT.">
+  <title>Khánh Linh — CSS & FE Portfolio</title>
+  <!-- Font Awesome: icon cho nút, thẻ bài tập và mạng xã hội -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <!-- Google Fonts: font chữ hình khối + font viết tay -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Nunito:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="trangchu.css">
+  <!-- CSS bổ sung cho khu vực FE nâng cao; giữ nguyên trangchu.css hiện có -->
+  <style>
+    .fe-advanced {
+      position: relative;
+      scroll-margin-top: 30px;
+      background: #e7f9f2;
+      border-top: 3px solid #192b27;
+      border-bottom: 3px solid #192b27;
+    }
+
+    .fe-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .fe-heading h2 {
+      margin: 5px 0 0;
+      font-family: 'Anton', 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 5.5vw, 64px);
+      letter-spacing: .01em;
+      line-height: 1.08;
+    }
+
+    .fe-heading h2 span {
+      color: #2654d8;
+    }
+
+    .fe-stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      background: #ffdc67;
+      color: #202020;
+      border: 2px solid #202020;
+      border-radius: 6px;
+      box-shadow: 4px 4px 0 #202020;
+      font-family: 'DM Mono', monospace;
+      font-weight: 700;
+      font-size: 12px;
+      transform: rotate(2deg);
+    }
+
+    .fe-feature {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(250px, .85fr);
+      gap: clamp(20px, 4vw, 45px);
+      padding: clamp(22px, 4vw, 40px);
+      background: #fffefa;
+      border: 2.5px solid #1b2027;
+      border-radius: 18px;
+      box-shadow: 8px 8px 0 #202125;
+    }
+
+    .fe-kicker {
+      margin: 0 0 15px;
+      color: #2550a5;
+      font: 700 12px/1.5 'DM Mono', monospace;
+      letter-spacing: .08em;
+    }
+
+    .fe-feature h3 {
+      margin: 0 0 15px;
+      font-family: 'Anton', 'Space Grotesk', sans-serif;
+      font-size: clamp(33px, 4vw, 54px);
+      font-weight: 500;
+      line-height: 1.15;
+    }
+
+    .fe-feature h3 em {
+      color: #2654d8;
+      font-style: normal;
+    }
+
+    .fe-description,
+    .fe-learning {
+      max-width: 670px;
+      font-family: 'Nunito', Arial, sans-serif;
+      line-height: 1.75;
+      color: #25383a;
+      font-size: 15px;
+    }
+
+    .fe-learn-title {
+      margin: 20px 0 7px;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: .02em;
+    }
+
+    .fe-learning {
+      margin-bottom: 20px;
+    }
+
+    .fe-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 25px;
+    }
+
+    .fe-tags span {
+      padding: 7px 10px;
+      border: 1.5px solid #293d36;
+      border-radius: 6px;
+      font: 700 11px/1.35 'DM Mono', monospace;
+      background: #e9f5fd;
+    }
+
+    .fe-tags span:nth-child(2) {
+      background: #ffe6ee;
+    }
+
+    .fe-tags span:nth-child(3) {
+      background: #fef0b9;
+    }
+
+    .fe-tags span:nth-child(4) {
+      background: #e2f2d6;
+    }
+
+    .fe-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+    }
+
+    .fe-link {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 11px 17px;
+      text-decoration: none;
+      font: 800 13px/1.4 'Nunito', Arial, sans-serif;
+      border: 2px solid #202125;
+      border-radius: 7px;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .fe-link:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 #1f2024;
+    }
+
+    .fe-link:focus-visible {
+      outline: 3px solid #2654d8;
+      outline-offset: 4px;
+    }
+
+    .fe-link-primary {
+      background: #1b2027;
+      color: #fff;
+    }
+
+    .fe-link-secondary {
+      background: #fffefa;
+      color: #1b2027;
+    }
+
+    .fe-preview {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .fe-preview-window {
+      overflow: hidden;
+      border: 3px solid #1e2529;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 6px 6px 0 #f7cb56;
+      transform: rotate(1.2deg);
+    }
+
+    .fe-window-top {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 11px 12px;
+      background: #202936;
+      color: #fff;
+    }
+
+    .fe-window-top i {
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff7e94;
+    }
+
+    .fe-window-top i:nth-child(2) {
+      background: #ffcc6a;
+    }
+
+    .fe-window-top i:nth-child(3) {
+      background: #85d5b6;
+    }
+
+    .fe-window-top small {
+      margin-left: auto;
+      font: 500 10px 'DM Mono', monospace;
+    }
+
+    .fe-preview-content {
+      padding: 20px;
+    }
+
+    .fe-preview-label {
+      display: block;
+      font: 700 11px/1.5 'DM Mono', monospace;
+      color: #4b5873;
+      margin: 0 0 10px;
+    }
+
+    .fe-preview-columns {
+      display: flex;
+      height: 90px;
+      gap: 5px;
+      margin-bottom: 24px;
+    }
+
+    .fe-preview-columns>div {
+      display: grid;
+      place-items: center;
+      font: 800 11px 'DM Mono', monospace;
+      border-radius: 5px;
+    }
+
+    .fe-preview-columns>div:first-child {
+      flex: 7;
+      background: #2464eb;
+      color: white;
+    }
+
+    .fe-preview-columns>div:last-child {
+      flex: 3;
+      background: #fa8086;
+      color: #29252c;
+    }
+
+    .fe-mobile-preview {
+      width: 45%;
+      min-width: 120px;
+      margin: 0 auto;
+      padding: 8px;
+      border: 2px solid #222;
+      border-radius: 8px;
+      background: #f4f7ff;
+    }
+
+    .fe-mobile-preview:before {
+      content: '';
+      display: block;
+      width: 26px;
+      height: 4px;
+      margin: 0 auto 8px;
+      border-radius: 5px;
+      background: #333;
+    }
+
+    .fe-mobile-preview div {
+      min-height: 70px;
+      display: grid;
+      place-items: center;
+      background: #2464eb;
+      color: #fff;
+      border-radius: 4px;
+      font: 700 10px 'DM Mono', monospace;
+    }
+
+    .fe-preview-caption {
+      padding-top: 18px;
+      color: #425152;
+      font: 700 12px/1.5 'DM Mono', monospace;
+      text-align: center;
+    }
+
+    .fe-note {
+      margin: 24px 0 0;
+      padding: 16px 18px;
+      background: #fff0c7;
+      border-left: 4px solid #272727;
+      color: #2f3b3c;
+      font-family: 'Nunito', Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .fe-note strong {
+      color: #20252c;
+    }
+
+    @media (max-width: 900px) {
+      .fe-feature {
+        grid-template-columns: 1fr;
+      }
+
+      .fe-preview {
+        max-width: 430px;
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .fe-stamp {
+        transform: none;
+      }
+
+      .fe-feature {
+        box-shadow: 5px 5px 0 #202125;
+      }
+
+      .fe-actions {
+        flex-direction: column;
+      }
+
+      .fe-link {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fe-link {
+        transition: none;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="paper" id="top">
+    <!-- NAVIGATION -->
+    <header class="site-header">
+      <a class="logo-stamp" href="#top" aria-label="Về đầu trang"><i class="fa-solid fa-bolt"></i></a>
+      <nav class="nav-main" aria-label="Điều hướng chính">
+        <a href="#top" class="nav-item is-active"><i class="fa-solid fa-star"></i> HOME</a>
+        <a href="#about" class="nav-item"><i class="fa-solid fa-user"></i> ABOUT</a>
+        <a href="#featured" class="nav-item"><i class="fa-solid fa-table-cells-large"></i> HIGHLIGHTS</a>
+        <a href="#bai-tap" class="nav-item"><i class="fa-solid fa-diamond"></i> CSS EXERCISES</a>
+        <a href="#fe-nang-cao" class="nav-item"><i class="fa-solid fa-laptop-code"></i> FE ADVANCED</a>
+      </nav>
+      <div class="nav-actions">
+        <!-- THAY URL BÊN DƯỚI BẰNG LINK CÁ NHÂN -->
+        <a class="social-dot yellow" href="https://github.com/" target="_blank" rel="noopener noreferrer"
+          aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a class="social-dot pink" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"
+          aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a class="social-dot mint" href="mailto:you@example.com" aria-label="Email"><i
+            class="fa-solid fa-envelope"></i></a>
+        <a class="contact-link" href="#contact"><i class="fa-solid fa-heart"></i> CONTACT</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-notes">
+          <span class="pill mint-pill"><i class="fa-solid fa-wand-magic-sparkles"></i> MADE WITH CSS</span>
+          <span class="scribble">Linh <span class="scribble-underline"></span></span>
+          <span class="pill butter-pill">SWEAT THE DETAILS <i class="fa-solid fa-sparkles"></i></span>
+        </div>
+        <!-- CHỈNH TÊN CỦA BẠN TRONG THẺ H1 -->
+        <div class="title-wrap">
+          <h1 id="hero-title">KHÁNH LINH</h1>
+        </div>
+        <div class="hero-footnotes">
+          <span class="sticky-label sticky-yellow">WEB / TMĐT STUDENT</span>
+          <span class="fine-print"><span class="tiny-blue"></span> CSS WEEK 03 + FE ADVANCED · PERSONAL PORTFOLIO</span>
+          <span class="sticky-label sticky-green">hello, world! <span aria-hidden="true">↗</span></span>
+        </div>
+        <div class="hero-message">
+          <div class="mini-portrait left-portrait"><img src="assets/anh-ca-nhan.jpg" alt="Ảnh đại diện nhỏ"
+              onerror="this.onerror=null;this.src='assets/avatar-minh-hoa.svg'"></div>
+          <p>Mình biến những dòng CSS thành <span class="target-sticker" aria-hidden="true"></span><br>giao diện <em>đơn
+              giản nhưng thú vị.</em> <span class="flower-sticker" aria-hidden="true">✿</span></p>
+          <div class="mini-portrait right-portrait"><img src="assets/anh-ca-nhan.jpg" alt="Ảnh đại diện nhỏ"
+              onerror="this.onerror=null;this.src='assets/avatar-minh-hoa.svg'"></div>
+        </div>
+        <a href="#bai-tap" class="black-button"><span class="pixel-dot">↗</span> XEM BÀI TẬP <i
+            class="fa-solid fa-arrow-down"></i></a>
+        <div class="hero-swoosh" aria-hidden="true"></div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="about section-pad" id="about" aria-labelledby="about-heading">
+        <div class="eyebrow handwritten">about me!</div>
+        <div class="about-layout">
+          <div class="polaroid left-photo">
+            <!-- Ảnh cần thêm: assets/anh-ca-nhan.jpg -->
+            <span class="washi-tape tape-blue" aria-hidden="true"></span>
+            <img src="assets/anh-ca-nhan.jpg" alt="Ảnh cá nhân"
+              onerror="this.onerror=null;this.src='assets/avatar-minh-hoa.svg'">
+            <span class="polaroid-caption">that's me! ✳</span>
+          </div>
+          <div class="about-copy">
+            <h2 id="about-heading" class="outline-label">what's up</h2>
+            <p class="handwritten intro-text">Hi! Mình là <strong>Khánh Linh</strong>, sinh viên đang học môn Phát triển
+              ứng dụng Web/TMĐT. Đây là góc nhỏ để mình lưu lại các bài thực hành HTML, CSS tuần 3 và FE nâng cao. Qua
+              từng bài, mình học cách xây dựng giao diện, điều chỉnh bố cục theo màn hình và sử dụng công cụ lập trình
+              trên trình duyệt. <span aria-hidden="true">✎</span></p>
+            <div class="quick-info" aria-label="Thông tin cá nhân">
+              <!-- SỬA MSSV, LỚP TRƯỚC KHI NỘP -->
+              <span><i class="fa-solid fa-id-card"></i> MSSV: [NHẬP MSSV]</span>
+              <span><i class="fa-solid fa-graduation-cap"></i> LỚP: [NHẬP LỚP]</span>
+            </div>
+            <div class="skill-tags">
+              <span class="tag-yellow">HTML &amp; CSS <i class="fa-solid fa-code"></i></span>
+              <span class="tag-mint">RESPONSIVE <i class="fa-solid fa-mobile-screen"></i></span>
+              <span class="tag-pink">WEB DESIGN <i class="fa-solid fa-paintbrush"></i></span>
+              <span class="tag-blue">FONT AWESOME <i class="fa-solid fa-icons"></i></span>
+              <span class="tag-mint">MEDIA QUERIES <i class="fa-solid fa-tablet-screen-button"></i></span>
+            </div>
+          </div>
+          <div class="polaroid right-photo">
+            <!-- Ảnh tùy chọn: assets/goc-hoc-tap.jpg -->
+            <span class="washi-tape tape-yellow" aria-hidden="true"></span>
+            <img src="assets/goc-hoc-tap.jpg" alt="Góc học tập và làm web"
+              onerror="this.onerror=null;this.src='assets/workspace-placeholder.svg'">
+            <span class="polaroid-caption">my workspace ♡</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED CASE STUDIES -->
+      <section class="featured section-pad" id="featured" aria-labelledby="featured-heading">
+        <div class="section-intro">
+          <span class="micro-label">✳ A FEW THINGS I'VE BUILT</span>
+          <h2 id="featured-heading">SELECTED <span>WORK.</span></h2>
+          <p>2 bài thực hành nổi bật trong hành trình học CSS tuần này.</p>
+        </div>
+        <div class="project-tab-row" aria-hidden="true">
+          <span class="project-tab tab-blue">✦ FEATURE 01</span>
+          <span class="project-tab tab-black">✦ FEATURE 02</span>
+        </div>
+        <article class="project project-dark">
+          <div class="project-content">
+            <div class="project-meta"><i class="fa-solid fa-circle"></i> CSS / BÀI 08</div>
+            <h3>CSS<br>Playground<span class="period">.</span></h3>
+            <p>Hiệu ứng CSS, bố cục và cách tổ chức các thành phần trong một trang web.</p>
+            <a class="project-link" href="BaiTap8.html">VIEW EXERCISE <i
+                class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+          <div class="preview preview-dark" aria-hidden="true">
+            <div class="preview-window-top"><span></span><span></span><span></span><b>WEB DESIGN LAB</b></div>
+            <div class="preview-window-body">
+              <div class="demo-nav">CSS WORKS <span>EXPLORE • STUDY • BUILD</span></div>
+              <div class="demo-heading">CREATIVE<br><em>EXPERIMENTS</em></div>
+              <div class="demo-cards"><span></span><span></span><span></span></div>
+            </div>
+            <span class="preview-tape tape-top" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="project project-yellow">
+          <div class="project-content">
+            <div class="project-meta"><i class="fa-solid fa-circle"></i> ICON DESIGN / BÀI 09</div>
+            <h3>Icon<br>Lab<span class="period">.</span></h3>
+            <p>Ứng dụng Font Awesome để thêm biểu tượng sinh động vào giao diện website.</p>
+            <a class="project-link" href="BaiTap9.html">VIEW EXERCISE <i
+                class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+          <div class="preview preview-light" aria-hidden="true">
+            <div class="preview-window-top"><span></span><span></span><span></span><b>FONT AWESOME</b></div>
+            <div class="icon-board">
+              <div class="icon-board-title">GOOD DESIGN<br><strong>STARTS HERE.</strong></div>
+              <div class="icon-board-grid">
+                <span><i class="fa-solid fa-code"></i></span>
+                <span><i class="fa-solid fa-palette"></i></span>
+                <span><i class="fa-solid fa-rocket"></i></span>
+                <span><i class="fa-solid fa-heart"></i></span>
+              </div>
+            </div>
+            <span class="preview-tape tape-bottom" aria-hidden="true"></span>
+          </div>
+        </article>
+      </section>
+
+      <!-- ALL EXERCISES: links required by assignment 10 -->
+      <section class="all-exercises section-pad" id="bai-tap" aria-labelledby="bai-tap-heading">
+        <div class="exercises-heading">
+          <div>
+            <div class="handwritten overline">your next stop ↓</div>
+            <h2 id="bai-tap-heading">ALL MY <span>CSS EXERCISES</span></h2>
+          </div>
+          <span class="exercise-counter"><i class="fa-solid fa-star"></i> 08 LINKS</span>
+        </div>
+        <div class="exercise-grid">
+          <a href="BaiTap1.html" class="exercise-card"><span class="num">01</span><i
+              class="fa-solid fa-gamepad card-symbol"></i><strong>CSS GAMES</strong><small>CSS Diner &amp;
+              Speedrun</small><span class="arrow">↗</span></a>
+          <a href="BaiTap2.html" class="exercise-card"><span class="num">02</span><i
+              class="fa-solid fa-font card-symbol"></i><strong>TEXT STYLING</strong><small>Chữ, nền,
+              overflow</small><span class="arrow">↗</span></a>
+          <a href="BaiTap4.html" class="exercise-card"><span class="num">04</span><i
+              class="fa-solid fa-bars card-symbol"></i><strong>NAVIGATION</strong><small>Menu bằng CSS</small><span
+              class="arrow">↗</span></a>
+          <a href="BaiTap5.html" class="exercise-card"><span class="num">05</span><i
+              class="fa-solid fa-window-maximize card-symbol"></i><strong>LANDING PAGE</strong><small>Shared
+              Hosting</small><span class="arrow">↗</span></a>
+          <a href="BaiTap6.html" class="exercise-card"><span class="num">06</span><i
+              class="fa-solid fa-images card-symbol"></i><strong>PORTFOLIO</strong><small>Gallery &amp;
+              categories</small><span class="arrow">↗</span></a>
+          <a href="BaiTap7.html" class="exercise-card"><span class="num">07</span><i
+              class="fa-solid fa-table-columns card-symbol"></i><strong>WEB LAYOUT</strong><small>Header, nav &amp;
+              footer</small><span class="arrow">↗</span></a>
+          <a href="BaiTap8.html" class="exercise-card"><span class="num">08</span><i
+              class="fa-solid fa-wand-magic-sparkles card-symbol"></i><strong>CSS EFFECTS</strong><small>Heroes &amp;
+              transitions</small><span class="arrow">↗</span></a>
+          <a href="BaiTap9.html" class="exercise-card"><span class="num">09</span><i
+              class="fa-solid fa-icons card-symbol"></i><strong>FONT AWESOME</strong><small>Icon library</small><span
+              class="arrow">↗</span></a>
+        </div>
+        <p class="assignment-note"><i class="fa-solid fa-thumbtack"></i> Theo đề bài, bài 3 được lựa chọn thay thế bằng
+          nhóm bài 4–7, nên trang này dẫn đến các bài đã thực hiện.</p>
+      </section>
+
+
+      <!-- FE NÂNG CAO: đặt Fe_Nang_Cao cùng cấp với VeNha để liên kết hoạt động trên GitHub Pages -->
+      <section class="fe-advanced section-pad" id="fe-nang-cao" aria-labelledby="fe-heading">
+        <div class="fe-heading">
+          <div>
+            <span class="micro-label">✳ THE NEXT STEP IN FRONT-END</span>
+            <h2 id="fe-heading">FE <span>ADVANCED.</span></h2>
+          </div>
+          <span class="fe-stamp"><i class="fa-solid fa-code"></i> RESPONSIVE + DEVTOOLS</span>
+        </div>
+        <div class="fe-feature">
+          <div class="fe-copy">
+            <p class="fe-kicker">✦ BÀI TẬP FE NÂNG CAO / 01</p>
+            <h3>Design for <em>every screen.</em></h3>
+            <p class="fe-description">Ở bài thực hành này, mình xây dựng một trang HTML có hai cột nội dung, sau đó dùng
+              CSS để giao diện tự thay đổi theo kích thước màn hình. Mình còn thực hành kiểm tra trang ở chế độ in và
+              thay đổi hình ảnh hiển thị bằng thẻ <code>&lt;picture&gt;</code>.</p>
+            <h4 class="fe-learn-title">MÌNH ĐÃ HỌC ĐƯỢC GÌ?</h4>
+            <p class="fe-learning">Mình hiểu hơn về <strong>responsive web design</strong>: từ bố cục hai cột 70%–30%
+              trên màn hình lớn, chuyển thành hai phần xếp dọc khi màn hình nhỏ hơn 768px, và ẩn cột bên phải ở khoảng
+              320–480px. Mình cũng biết sử dụng <strong>media queries</strong>, <strong>CSS cho chế độ in</strong> và
+              <strong>responsive images</strong> để nội dung phù hợp với từng tình huống.</p>
+            <div class="fe-tags" aria-label="Kỹ thuật đã thực hành">
+              <span>#CSS_MEDIA_QUERIES</span>
+              <span>#RESPONSIVE_LAYOUT</span>
+              <span>#PICTURE_SOURCE</span>
+              <span>#PRINT_CSS</span>
+            </div>
+            <div class="fe-actions">
+              <a class="fe-link fe-link-primary" href="../Fe_Nang_Cao/Bai1.html"><i
+                  class="fa-solid fa-arrow-up-right-from-square"></i> XEM BÀI TẬP FE</a>
+              <a class="fe-link fe-link-secondary" href="../Fe_Nang_Cao/NguyenThiKhanhLinh.docx" download><i
+                  class="fa-solid fa-file-word"></i> TẢI MINH CHỨNG</a>
+            </div>
+          </div>
+          <div class="fe-preview" aria-label="Minh họa bố cục thay đổi theo màn hình">
+            <div class="fe-preview-window">
+              <div class="fe-window-top"><i></i><i></i><i></i><small>responsive.html</small></div>
+              <div class="fe-preview-content">
+                <span class="fe-preview-label">DESKTOP / 70% + 30%</span>
+                <div class="fe-preview-columns" aria-hidden="true">
+                  <div>LEFT 70%</div>
+                  <div>RIGHT 30%</div>
+                </div>
+                <span class="fe-preview-label">MOBILE / 320–480PX</span>
+                <div class="fe-mobile-preview" aria-hidden="true">
+                  <div>LEFT 100%</div>
+                </div>
+              </div>
+            </div>
+            <p class="fe-preview-caption">ONE PAGE. DIFFERENT SCREENS. ✳</p>
+          </div>
+        </div>
+        <p class="fe-note"><strong><i class="fa-solid fa-terminal"></i> Ngoài ra, mình đã thử nghiệm Chrome Dino bằng
+            DevTools Console:</strong> thay đổi tốc độ chạy, lực nhảy của nhân vật và hành vi kết thúc trò chơi. Phần
+          này giúp mình làm quen với việc gọi phương thức JavaScript và quan sát chương trình thay đổi ngay trong trình
+          duyệt. Các thao tác Chrome Dino là thử nghiệm trên trò chơi có sẵn, không phải một trò chơi do mình tự lập
+          trình.</p>
+      </section>
+
+      <!-- CONTACT FOOTER -->
+      <section class="contact section-pad" id="contact" aria-labelledby="contact-heading">
+        <div class="contact-doodle">✺</div>
+        <div>
+          <span class="micro-label">SAY HELLO!</span>
+          <h2 id="contact-heading">LET'S KEEP <em>LEARNING.</em></h2>
+          <p>Cảm ơn bạn đã ghé thăm góc nhỏ học CSS và FE nâng cao của mình!</p>
+        </div>
+        <div class="contact-buttons">
+          <!-- THAY LINK GITHUB, FACEBOOK, EMAIL CÁ NHÂN -->
+          <a href="https://github.com/NguyenThiKhanhLinh31241025892/Tuan3" target="_blank" rel="noopener noreferrer"><i
+              class="fa-brands fa-github"></i> GITHUB</a>
+          <a href="https://www.facebook.com/linhchi.185?locale=vi_VN" target="_blank" rel="noopener noreferrer"><i
+              class="fa-brands fa-facebook-f"></i> FACEBOOK</a>
+          <a href="mailto:linhnguyen.31241025892@st.ueh.edu.vn"><i class="fa-solid fa-envelope"></i> EMAIL</a>
+        </div>
+      </section>
+    </main>
+    <footer class="footer"><span>© CSS WEEK 03 + FE ADVANCED · PERSONAL PORTFOLIO</span><span>MADE WITH <i
+          class="fa-solid fa-heart"></i> &amp; CSS</span><a href="#top">BACK TO TOP ↑</a></footer>
+  </div>
+</body>
+
+</html>
